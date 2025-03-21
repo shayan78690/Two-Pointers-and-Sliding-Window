@@ -1,3 +1,32 @@
+
+
+class Solution {
+    public int numberOfSubstrings(String s) {
+        int n = s.length();
+        int left = 0;
+        int right = 0;
+        int count = 0;
+        int map[] = new int[3];
+        while (right < n) {
+            map[s.charAt(right) - 'a']++;
+
+            while (map[0] > 0 && map[1] > 0 && map[2] > 0) {
+                count += (n - right);
+
+                map[s.charAt(left) - 'a']--;
+                left++;
+            }
+            right++;
+        }
+        return count;
+    }
+}
+
+
+
+
+
+
 class Solution {
     public int numberOfSubstrings(String s) {
         int n = s.length();
