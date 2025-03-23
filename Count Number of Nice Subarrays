@@ -1,0 +1,24 @@
+class Solution {
+    public int numberOfSubarrays(int[] nums, int k) {
+        return func(nums, k) - func(nums, k-1);
+    }
+    public int func(int nums[], int k) {
+        int count = 0; 
+        int left = 0;
+        int right = 0;
+        int n = nums.length;
+        int sum = 0;
+        while(right < n) {
+            sum += nums[right] % 2;
+
+            while(sum > k) {
+                sum -= nums[left] % 2;
+                left++;
+            }
+            
+            count += (right-left+1);
+            right++;
+        }
+        return count;
+    }
+}
